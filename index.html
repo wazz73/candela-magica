@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Candela Magica — Candele artigianali</title>
+  <meta name="description" content="Candela Magica: candele artigianali in cera di soia, profumate a mano con oli essenziali. Accendi la tua magia.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path d='M32 6c6 10 12 16 12 26a12 12 0 0 1-24 0c0-10 6-16 12-26z' fill='%23f5a524'/></svg>">
+</head>
+<body>
+  <canvas id="sparks" aria-hidden="true"></canvas>
+
+  <header class="nav" id="top">
+    <a href="#top" class="logo">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c2.5 4 5 6.5 5 10.5a5 5 0 0 1-10 0C7 8.5 9.5 6 12 2z"/></svg>
+      Candela Magica
+    </a>
+    <button class="menu-toggle" aria-label="Apri menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+    <nav class="links">
+      <a href="#collezione">Collezione</a>
+      <a href="#storia">La nostra storia</a>
+      <a href="#rituale">Il rituale</a>
+      <a href="#contatti">Contatti</a>
+      <button class="cart-btn" aria-label="Carrello">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7zm3 0a3 3 0 0 1 6 0"/></svg>
+        <span class="cart-count">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">Candele artigianali · fatte a mano in Italia</p>
+        <h1>Accendi la tua <em>magia</em></h1>
+        <p class="lead">Cera di soia naturale, stoppini in cotone e oli essenziali puri.
+          Ogni candela è versata a mano, in piccoli lotti, per trasformare la tua casa in un rifugio.</p>
+        <div class="cta-row">
+          <a href="#collezione" class="btn btn-primary">Scopri la collezione</a>
+          <a href="#storia" class="btn btn-ghost">La nostra storia</a>
+        </div>
+      </div>
+
+      <div class="hero-candle" aria-hidden="true">
+        <div class="glow"></div>
+        <div class="candle">
+          <div class="flame">
+            <div class="flame-inner"></div>
+          </div>
+          <div class="wick"></div>
+          <div class="wax">
+            <div class="drip d1"></div>
+            <div class="drip d2"></div>
+            <span class="label">Candela<br>Magica</span>
+          </div>
+        </div>
+        <div class="plate"></div>
+        <p class="hint">clicca la fiamma ✦</p>
+      </div>
+    </section>
+
+    <!-- VALORI -->
+    <section class="values">
+      <div class="value">
+        <span class="v-icon">🌿</span>
+        <h3>100% cera di soia</h3>
+        <p>Vegana, biodegradabile, brucia pulita e più a lungo.</p>
+      </div>
+      <div class="value">
+        <span class="v-icon">✋</span>
+        <h3>Fatte a mano</h3>
+        <p>Versate una per una nel nostro laboratorio.</p>
+      </div>
+      <div class="value">
+        <span class="v-icon">🌸</span>
+        <h3>Oli essenziali</h3>
+        <p>Profumi naturali, senza ftalati né parabeni.</p>
+      </div>
+      <div class="value">
+        <span class="v-icon">♻️</span>
+        <h3>Vasetti riutilizzabili</h3>
+        <p>Vetro e ceramica pensati per una seconda vita.</p>
+      </div>
+    </section>
+
+    <!-- COLLEZIONE -->
+    <section class="collection" id="collezione">
+      <div class="section-head">
+        <p class="eyebrow">La collezione</p>
+        <h2>Un profumo per ogni momento</h2>
+        <div class="filters" role="tablist">
+          <button class="filter active" data-filter="tutte">Tutte</button>
+          <button class="filter" data-filter="relax">Relax</button>
+          <button class="filter" data-filter="energia">Energia</button>
+          <button class="filter" data-filter="casa">Casa</button>
+        </div>
+      </div>
+
+      <div class="grid" id="product-grid"></div>
+    </section>
+
+    <!-- STORIA -->
+    <section class="story" id="storia">
+      <div class="story-visual" aria-hidden="true">
+        <div class="mini-candles">
+          <div class="mini c1"><i></i></div>
+          <div class="mini c2"><i></i></div>
+          <div class="mini c3"><i></i></div>
+        </div>
+      </div>
+      <div class="story-text">
+        <p class="eyebrow">La nostra storia</p>
+        <h2>Nata da una piccola fiamma</h2>
+        <p>Candela Magica nasce in un piccolo laboratorio, tra barattoli di cera, fiori secchi e
+          l'idea che una candela non sia solo luce, ma un modo per prendersi cura di sé.</p>
+        <p>Selezioniamo ingredienti naturali, testiamo ogni fragranza per settimane e versiamo
+          ogni candela a mano. Il risultato è un oggetto semplice, onesto, che rende speciale
+          ogni sera.</p>
+        <div class="stats">
+          <div><strong data-count="50">0</strong><span>ore di combustione</span></div>
+          <div><strong data-count="12">0</strong><span>fragranze</span></div>
+          <div><strong data-count="100">0</strong><span>% naturale</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RITUALE -->
+    <section class="ritual" id="rituale">
+      <div class="section-head">
+        <p class="eyebrow">Il rituale</p>
+        <h2>Come far durare la magia</h2>
+      </div>
+      <ol class="steps">
+        <li>
+          <span class="step-n">1</span>
+          <h3>La prima accensione</h3>
+          <p>Lasciala accesa 2–3 ore, finché la superficie non è tutta sciolta. Eviterai il "tunnel".</p>
+        </li>
+        <li>
+          <span class="step-n">2</span>
+          <h3>Taglia lo stoppino</h3>
+          <p>Prima di ogni accensione accorcialo a circa 5 mm per una fiamma calma e senza fumo.</p>
+        </li>
+        <li>
+          <span class="step-n">3</span>
+          <h3>Spegni con dolcezza</h3>
+          <p>Usa uno spegnimoccolo o immergi lo stoppino nella cera: niente fumo, profumo intatto.</p>
+        </li>
+        <li>
+          <span class="step-n">4</span>
+          <h3>Dai nuova vita al vasetto</h3>
+          <p>Finita la candela, pulisci il vasetto con acqua calda e usalo per piante o piccoli oggetti.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter">
+      <h2>Entra nel cerchio magico</h2>
+      <p>Novità, edizioni limitate e un 10% di sconto sul primo ordine.</p>
+      <form class="nl-form" id="nl-form">
+        <input type="email" required placeholder="La tua email" aria-label="Email">
+        <button class="btn btn-primary" type="submit">Iscriviti</button>
+      </form>
+      <p class="form-msg" id="nl-msg" role="status"></p>
+    </section>
+
+    <!-- CONTATTI -->
+    <section class="contact" id="contatti">
+      <div class="contact-info">
+        <p class="eyebrow">Contatti</p>
+        <h2>Scrivici</h2>
+        <p>Hai una domanda, vuoi una candela personalizzata o un regalo per un evento? Siamo qui.</p>
+        <ul>
+          <li>✉️ <a href="mailto:ciao@candelamagica.it">ciao@candelamagica.it</a></li>
+          <li>📍 Laboratorio in Italia — spedizioni in tutta Europa</li>
+          <li>🕯️ Ordini personalizzati per matrimoni ed eventi</li>
+        </ul>
+      </div>
+      <form class="contact-form" id="contact-form">
+        <label>Nome<input type="text" name="nome" required></label>
+        <label>Email<input type="email" name="email" required></label>
+        <label>Messaggio<textarea name="messaggio" rows="5" required></textarea></label>
+        <button class="btn btn-primary" type="submit">Invia messaggio</button>
+        <p class="form-msg" id="contact-msg" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a href="#top" class="logo">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c2.5 4 5 6.5 5 10.5a5 5 0 0 1-10 0C7 8.5 9.5 6 12 2z"/></svg>
+      Candela Magica
+    </a>
+    <p>© <span id="year"></span> Candela Magica · Fatto a mano con amore</p>
+  </footer>
+
+  <!-- CARRELLO -->
+  <aside class="cart" id="cart" aria-hidden="true">
+    <div class="cart-head">
+      <h3>Il tuo carrello</h3>
+      <button class="cart-close" aria-label="Chiudi carrello">×</button>
+    </div>
+    <ul class="cart-items" id="cart-items"></ul>
+    <div class="cart-foot">
+      <div class="cart-total"><span>Totale</span><strong id="cart-total">€0,00</strong></div>
+      <button class="btn btn-primary" id="checkout">Procedi all'ordine</button>
+    </div>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
