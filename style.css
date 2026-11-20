@@ -284,7 +284,7 @@ input:focus, textarea:focus { outline: none; border-color: var(--gold); }
 .toast {
   position: fixed; bottom: 24px; left: 50%; transform: translate(-50%, 120px); z-index: 60;
   background: var(--gold); color: #1a1208; padding: .8rem 1.4rem; border-radius: 999px; font-weight: 600; font-size: .92rem;
-  transition: transform .35s; box-shadow: 0 10px 30px -10px rgba(0,0,0,.5);
+  transition: transform .35s; box-shadow: 0 10px 30px -10px rgba(0,0,0,.5); pointer-events: none;
 }
 .toast.show { transform: translate(-50%, 0); }
 
@@ -324,3 +324,47 @@ input:focus, textarea:focus { outline: none; border-color: var(--gold); }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
 }
+
+/* ===== APP (PWA) ===== */
+.install-btn {
+  display: inline-flex; align-items: center; gap: .4rem; background: rgba(245,165,36,.12); color: var(--gold-2);
+  border: 1px solid rgba(245,165,36,.4); padding: .5rem 1rem; border-radius: 999px; font: 600 .85rem var(--sans); cursor: pointer;
+}
+.install-btn[hidden] { display: none; }
+.install-btn svg { width: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.install-btn:hover { background: var(--gold); color: #1a1208; }
+
+.tabbar { display: none; }
+.ios-tip {
+  position: fixed; left: 16px; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 70;
+  display: flex; gap: .9rem; align-items: center; padding: 1rem 2.4rem 1rem 1rem; border-radius: 16px;
+  background: var(--bg-2); border: 1px solid rgba(245,165,36,.35); box-shadow: 0 20px 40px -10px rgba(0,0,0,.6); font-size: .9rem;
+}
+.ios-tip[hidden] { display: none; }
+.ios-tip img { border-radius: 10px; flex-shrink: 0; }
+.ios-tip em { color: var(--gold-2); font-style: normal; }
+.ios-close { position: absolute; top: 6px; right: 10px; background: none; border: none; color: var(--muted); font-size: 1.5rem; cursor: pointer; }
+
+/* Quando il sito è aperto come app installata */
+@media (display-mode: standalone) {
+  body { padding-bottom: calc(68px + env(safe-area-inset-bottom)); -webkit-tap-highlight-color: transparent; user-select: none; }
+  input, textarea { user-select: text; }
+  .nav { padding-top: calc(1rem + env(safe-area-inset-top)); }
+  .install-btn { display: none !important; }
+  .tabbar {
+    display: grid; grid-template-columns: repeat(4, 1fr); position: fixed; left: 0; right: 0; bottom: 0; z-index: 45;
+    padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); background: rgba(21,16,28,.92); backdrop-filter: blur(14px);
+    border-top: 1px solid var(--line);
+  }
+  .tabbar a, .tabbar button {
+    position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0;
+    background: none; border: none; color: var(--muted); font: 500 .7rem var(--sans); text-decoration: none; cursor: pointer;
+  }
+  .tabbar a:active, .tabbar button:active { color: var(--gold); }
+  .tabbar svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; }
+  .tab-count { top: 0; right: calc(50% - 22px); }
+  .toast { bottom: calc(84px + env(safe-area-inset-bottom)); }
+  @media (max-width: 780px) { .nav .cart-btn { display: none; } }
+}
+.share-ico { display: inline-block; width: 18px; height: 18px; vertical-align: -3px; fill: none; stroke: var(--gold-2); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.toast { width: max-content; max-width: calc(100% - 32px); text-align: center; }

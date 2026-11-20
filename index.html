@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Candela Magica — Candele artigianali</title>
   <meta name="description" content="Candela Magica: candele artigianali in cera di soia, profumate a mano con oli essenziali. Accendi la tua magia.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,6 +10,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#15101c">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Candela Magica">
 </head>
 <body>
   <canvas id="sparks" aria-hidden="true"></canvas>
@@ -27,6 +34,10 @@
       <a href="#storia">La nostra storia</a>
       <a href="#rituale">Il rituale</a>
       <a href="#contatti">Contatti</a>
+      <button class="install-btn" id="install-btn" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 19h14"/></svg>
+        Installa l'app
+      </button>
       <button class="cart-btn" aria-label="Carrello">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7zm3 0a3 3 0 0 1 6 0"/></svg>
         <span class="cart-count">0</span>
@@ -216,6 +227,21 @@
   </aside>
   <div class="overlay" id="overlay"></div>
   <div class="toast" id="toast" role="status"></div>
+
+  <!-- Barra di navigazione mostrata solo quando il sito è aperto come app -->
+  <nav class="tabbar" aria-label="Navigazione app">
+    <a href="#top"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/></svg>Home</a>
+    <a href="#collezione"><svg viewBox="0 0 24 24"><path d="M12 3c2 3 4 5 4 8a4 4 0 0 1-8 0c0-3 2-5 4-8zM8 15h8v6H8z"/></svg>Candele</a>
+    <button class="tab-cart"><svg viewBox="0 0 24 24"><path d="M6 7h12l-1 13H7L6 7zm3 0a3 3 0 0 1 6 0"/></svg>Carrello<span class="cart-count tab-count">0</span></button>
+    <a href="#contatti"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4zM4 6l8 7 8-7"/></svg>Contatti</a>
+  </nav>
+
+  <!-- Istruzioni di installazione per iPhone/iPad -->
+  <div class="ios-tip" id="ios-tip" hidden>
+    <button class="ios-close" aria-label="Chiudi">×</button>
+    <img src="assets/icons/icon-192.png" alt="" width="44" height="44">
+    <p><strong>Installa Candela Magica</strong><br>Tocca <svg class="share-ico" viewBox="0 0 24 24" aria-label="Condividi"><path d="M12 3v12M8 7l4-4 4 4M6 11H5v10h14V11h-1"/></svg> <em>Condividi</em> e poi <em>"Aggiungi alla schermata Home"</em>.</p>
+  </div>
 
   <script src="script.js"></script>
 </body>

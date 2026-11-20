@@ -56,9 +56,10 @@ function renderCart() {
   const items = $("#cart-items");
   const count = cart.reduce((s, i) => s + i.qty, 0);
   const total = cart.reduce((s, i) => s + i.qty * PRODUCTS.find((p) => p.id === i.id).price, 0);
-  const badge = $(".cart-count");
-  badge.textContent = count;
-  badge.classList.remove("bump"); void badge.offsetWidth; badge.classList.add("bump");
+  document.querySelectorAll(".cart-count").forEach((badge) => {
+    badge.textContent = count;
+    badge.classList.remove("bump"); void badge.offsetWidth; badge.classList.add("bump");
+  });
   $("#cart-total").textContent = fmt(total);
 
   if (!cart.length) {
@@ -234,3 +235,43 @@ $("#contact-form").addEventListener("submit", (e) => {
 $("#year").textContent = new Date().getFullYear();
 renderProducts();
 renderCart();
+
+// ===== App installabile (PWA) =====
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+  addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+}
+
+const installBtn = $("#install-btn");
+let installEvent = null;
+const isStandalone = matchMedia("(display-mode: standalone)").matches || navigator.standalone;
+
+// Android / Chrome / Edge: mostra il bottone "Installa l'app"
+addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  installEvent = e;
+  installBtn.hidden = false;
+});
+installBtn.addEventListener("click", async () => {
+  if (!installEvent) return;
+  installEvent.prompt();
+  const { outcome } = await installEvent.userChoice;
+  if (outcome === "accepted") installBtn.hidden = true;
+  installEvent = null;
+});
+addEventListener("appinstalled", () => {
+  installBtn.hidden = true;
+  toast("Candela Magica è sulla tua schermata Home ✦");
+});
+
+// iPhone / iPad: Safari non ha il bottone automatico, mostriamo le istruzioni una volta
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+let tipSeen = false;
+try { tipSeen = localStorage.getItem("cm-ios-tip") === "1"; } catch {}
+if (isIOS && !isStandalone && !tipSeen) setTimeout(() => ($("#ios-tip").hidden = false), 4000);
+$(".ios-close").addEventListener("click", () => {
+  $("#ios-tip").hidden = true;
+  try { localStorage.setItem("cm-ios-tip", "1"); } catch {}
+});
+
+// Barra in basso dell'app
+$(".tab-cart").addEventListener("click", () => openCart(true));
